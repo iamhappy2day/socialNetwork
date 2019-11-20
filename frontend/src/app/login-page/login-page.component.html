@@ -1,0 +1,45 @@
+<div class="wrapper-login">
+    <div class="heading">
+        <h1>Welcome!</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="loginUser()">
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" 
+                id="inputEmail" placeholder="Enter email"
+                formControlName="email">
+            <!-- Validation email -->
+            <div 
+            class="validation"
+            *ngIf="form.get('email').invalid && form.get('email').touched">
+                <small *ngIf="form.get('email').errors.required">
+                    Email field can not be empty 
+                </small>
+
+                <small *ngIf="form.get('email').errors.email">
+                     Type the correct email
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" 
+                id="inputPassword" placeholder="Password"
+                formControlName="password">
+            <!-- Validation password -->
+            <div 
+            class="validation"
+            *ngIf="form.get('password').invalid && form.get('password').touched">
+                <small *ngIf="form.get('password').errors.required">
+                    Password field can not be empty 
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Log In</button>
+        </div>
+    </form>
+    <div class="reg">
+        <p>First time here?</p>
+        <a [routerLink]="['/register']">Register Me</a> 
+    </div>
+</div>
+

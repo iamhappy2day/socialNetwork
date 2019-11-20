@@ -22,8 +22,16 @@ mongoose.connect(
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors);
-app.use('/api/user', authRoutes)
+app.use('', authRoutes)
 app.use('/users', userRoutes)
 
 
-app.listen(3000, () => console.log(`Server is running on port ${port} ...`))
+const server = app.listen(3000, () => console.log(`Server is running on port ${port} ...`))
+
+//Socket setup
+const socket = require('socket.io')
+const io = socket(server)
+
+io.on('connection',(socket) => {
+    console.log('made socket connection')
+})

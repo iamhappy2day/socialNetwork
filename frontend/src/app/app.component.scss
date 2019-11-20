@@ -1,0 +1,22 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-nav .nav-link {
+    color:#fff !important;
+}
+.nav-item {
+    margin-right: 3rem;
+    &:last-child {
+        margin-right: 0px;
+    }
+}
+.nav-link {
+    display: inline-block !important;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

@@ -1,0 +1,25 @@
+.wrapper-register {
+    padding: 2rem 0;
+}
+
+.heading, .link-div {
+    text-align: center;
+}
+
+.link-div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    a {
+        margin-left: 8px;
+    }
+}
+
+input {
+    &.ng-invalid.ng-touched{
+        border: 1px solid red;
+    }
+    &.ng-valid.ng-touched{
+        border: 1px solid #78C2AD
+    }
+}

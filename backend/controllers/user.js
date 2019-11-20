@@ -13,24 +13,32 @@ class Controller {
         res.status(200).send(targetUser)
     }
 
-    async addUser(req, res) {    
-        const user = new Users({
-            name: req.body.name,
-            nickname: req.body.nickname
-        })
-        await user.save()
-        res.status(201).send(user)
-    }
-
     async updateUser(req, res) {
-       
+        
         const updQuery = {};
+        
         if(req.body.name) {
             updQuery.name = req.body.name
         }
         if(req.body.nickname) {
             updQuery.nickname = req.body.nickname
         }
+        if(req.body.surname) {
+            updQuery.surname = req.body.surname
+        }
+        if(req.body.sex) {
+            updQuery.sex = req.body.sex
+        }
+        if(req.body.city) {
+            updQuery.city = req.body.city
+        }
+        if(req.body.country) {
+            updQuery.country = req.body.country
+        }
+        if(req.body.age) {
+            updQuery.age = req.body.age
+        }
+       
         const updUser = await Users.findOneAndUpdate(
             {_id: req.params.id}, 
             updQuery,

@@ -1,0 +1,58 @@
+<div class="wrapper">
+    
+    <div class="heading">
+        <h1>Tell the world about you</h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="updateUser()">
+            <div class="form-group">
+                <label class="col-form-label" for="inputDefault">Name</label>
+                <input type="text" class="form-control" 
+                    placeholder=" New name" id="inputName"
+                    formControlName="name">
+            </div>
+            
+            <div class="form-group">
+                <label class="col-form-label" for="inputDefault">Nickname</label>
+                <input type="text" class="form-control" 
+                    placeholder="New nickname" id="inputNickname"
+                    formControlName="nickname">
+            </div>        
+            <div class="form-group">
+                <label for="inputDefault">Surname</label>
+                <input type="text" class="form-control" 
+                id="inputSurname" placeholder="Surname"
+                formControlName="surname">
+                
+            </div>
+            <div class="form-group">
+                <label for="inputDefault">Age</label>
+                <input type="text" class="form-control"
+                    id="inputAge" placeholder="How old are you?"
+                    formControlName="age">
+                
+            </div>
+            <div class="form-group">
+                    <label for="inputPassword">Sex</label>
+                    <input type="text" class="form-control"
+                        id="inputSex" placeholder="Your sex"
+                        formControlName="sex">
+
+            </div>
+            <div class="form-group">
+                    <label for="inputCountry">Country</label>
+                    <input type="text" class="form-control"
+                        id="inputCountry" placeholder="Where are you from?"
+                        formControlName="country">
+
+            </div>
+            <div class="form-group">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control"
+                        id="inputCity" placeholder="What city do you live?"
+                        formControlName="city">
+            </div>
+                <button (click)="updateUser()" type="submit" class="btn btn-secondary" [disabled] = "form.invalid">Update my info</button>
+                <button (click)="deleteUser()" class="btn btn-info">Delete this profile</button>
+        </form>
+</div>

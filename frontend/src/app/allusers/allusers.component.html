@@ -1,0 +1,28 @@
+<div class="wrapper users">
+
+    <div class="form-group">
+        <input [(ngModel)]="searchStr" type="text" class="form-control" placeholder="Type user's name or surname ..." id="inputDefault">
+    </div>
+      
+    <ul class="user-list" *ngIf="users.length; else loading">
+        <li *ngFor="let user of users | searchPipe: searchStr"> 
+            <span>
+                <a [routerLink]="['/users','user-profile',user._id]">
+                        <!-- [routerLink]="['/register']" -->
+                        <!-- [routerlink]= "['users','user-profile',user._id]"> -->
+                    {{user.name}} {{user.surname}}
+                </a>
+            </span>
+            <span>{{user.city}} {{user.country}}</span>
+            <button class="btn btn-info btn-sm">Add to friends list</button>
+        </li>
+    </ul>
+</div> 
+
+<!-- loader -->
+<ng-template #loading >
+        <app-loader></app-loader>
+</ng-template>
+
+
+

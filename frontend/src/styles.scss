@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+.validation {
+    small {
+        color: #F3969A ;
+    }
+}

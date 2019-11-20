@@ -1,0 +1,23 @@
+.wrapper-login {
+    padding: 2rem 0;
+}
+.heading {
+    text-align: center;
+    margin-bottom: 2rem ;
+}
+.reg {
+    display: flex;
+    justify-content: center;
+    p {
+        margin-right: 8px;
+    }
+
+}
+input {
+    &.ng-invalid.ng-touched{
+        border: 1px solid red;
+    }
+    &.ng-valid.ng-touched{
+        border: 1px solid #78C2AD
+    }
+}

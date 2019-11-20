@@ -9,7 +9,6 @@ const bcrypt = require('bcryptjs')
 class Controller {
 
     async userRegister(req, res) {
-
         // Validate the data before we make a user
         const { error } = registerValidation(req.body)
         if(error) {
@@ -55,6 +54,7 @@ class Controller {
 
         // Check if the user exists (check email)
         const userExists = await User.findOne({email: req.body.email});
+        
         if(!userExists) {
             return res.status(400).send('There is no such user... Check the email')
         } 
@@ -66,8 +66,10 @@ class Controller {
 
        //Create and assign JWT (JSON web token)
        const token = jwt.sign({_id: userExists._id}, process.env.TOKEN_SECRET)
+
        // auth-token - is a custom responce header
-       res.header('auth-token', token).send(token);
+       res.header('auth-token', token).send({token: token, user: userExists, expiresIn: 3600})
+
     }
 }
   

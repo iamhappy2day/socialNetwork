@@ -1,0 +1,77 @@
+<div class="wrapper-register">
+
+    <div class="heading">
+        <h1>First time here?</h1>
+        <p>Sign up</p>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="addUser()">
+        <div class="form-group">
+            <label class="col-form-label" for="inputDefault">Name</label>
+            <input type="text" class="form-control" 
+                placeholder="Enter your name" id="inputName"
+                formControlName="name">
+            <!-- Validation nickname -->
+            <div 
+            class="validation"
+            *ngIf="form.get('name').invalid && form.get('name').touched">
+                <small *ngIf="form.get('name').errors.required">
+                    Name is required. 
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="inputDefault">Nickname</label>
+            <input type="text" class="form-control" 
+                placeholder="Enter your nickname" id="inputNickname"
+                formControlName="nickname">
+            <!-- Validation nickname -->
+            <div 
+            class="validation"
+            *ngIf="form.get('nickname').invalid && form.get('nickname').touched">
+                <small *ngIf="form.get('nickname').errors.required">
+                    Nickname is required. 
+                </small>
+            </div>
+        </div>        
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" 
+            id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"
+            formControlName="email">
+             <!-- Validation email -->
+             <div 
+             class="validation"
+             *ngIf="form.get('email').invalid && form.get('email').touched">
+                 <small *ngIf="form.get('email').errors.required">
+                     Email field can not be empty 
+                 </small>
+ 
+                 <small *ngIf="form.get('email').errors.email">
+                      Type the correct email
+                 </small>
+             </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control"
+             id="inputPassword" placeholder="Password"
+             formControlName="password">
+             <!-- Validation password -->
+            <div 
+            class="validation"
+            *ngIf="form.get('password').invalid && form.get('password').touched">
+                <small *ngIf="form.get('password').errors.required">
+                    Password field can not be empty 
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled] = "form.invalid">Register Me</button>
+        </div>
+    </form>
+    <div class="link-div">
+        <p>Already a member?</p>
+        <a [routerLink]="['/login']">Back to Login</a>
+    </div>
+        
+</div>
+

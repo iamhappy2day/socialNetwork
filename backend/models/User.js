@@ -23,7 +23,23 @@ const UserSchema = new Shema({
         required: true,
         max: 1024,
         min: 3 
+    },
+    age: {
+        type: Number
+    },
+    surname: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    sex: {
+        type: String
     }
+
 
     
 });

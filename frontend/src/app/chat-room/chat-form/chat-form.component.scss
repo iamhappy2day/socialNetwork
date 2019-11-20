@@ -1,0 +1,17 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .form-group{
+        width: 100%;
+        margin: 0;
+    }
+
+    .btn {
+        margin: 0;
+        position: absolute;
+        right: 0;
+
+    }
+}
