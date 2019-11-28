@@ -3,7 +3,7 @@ nav {
     justify-content: space-between;
 }
 .navbar-nav .nav-link {
-    color:#fff !important;
+    color:#fff;
 }
 .nav-item {
     margin-right: 3rem;
@@ -19,4 +19,8 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.active {
+    a {color: #2a2d32 !important;}
 }

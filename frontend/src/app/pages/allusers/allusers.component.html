@@ -7,9 +7,7 @@
     <ul class="user-list" *ngIf="users.length; else loading">
         <li *ngFor="let user of users | searchPipe: searchStr"> 
             <span>
-                <a [routerLink]="['/users','user-profile',user._id]">
-                        <!-- [routerLink]="['/register']" -->
-                        <!-- [routerlink]= "['users','user-profile',user._id]"> -->
+                <a [routerLink]="['/users',user._id]">
                     {{user.name}} {{user.surname}}
                 </a>
             </span>

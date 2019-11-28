@@ -1,0 +1,58 @@
+.wrapper {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    h3 {
+        color: #000;
+    }
+
+    .user-photo {
+        text-align: center;
+        padding: 20px;
+        .profile-image {
+            width: 200px;
+            height: 200px;
+        }
+    }
+    .user-shortInfo {
+        text-align: left;
+        padding: 20px;
+        flex-grow: 1;
+        margin-left: 40px;
+        ul.user-info {
+            margin-top: 2rem;
+            li{
+                margin-bottom: 10px;
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+            }
+            span{
+                display: inline-block;
+                width: 100px;
+                color:#888282;
+                font-weight: 300
+            }
+        }
+    }
+
+    span {
+        font-weight: 500;
+    }
+    .btn-list {
+        display: flex;
+        .btn {
+            margin-right: 10px;
+        }
+    }
+    .profile-image{
+        i {
+            font-size: 140px;
+            color:#78C2AD;
+        }
+    }
+}
+
+app-loader{
+    margin: 0 auto;
+}

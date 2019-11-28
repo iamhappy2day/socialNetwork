@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './guards/auth.guard';
-import { UserUpdateComponent } from './user-update/user-update.component';
-import { AllusersComponent } from './allusers/allusers.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { ChatListComponent } from './chat-list/chat-list.component';
+import { UserUpdateComponent } from './pages/user-update/user-update.component';
+import { AllusersComponent } from './pages/allusers/allusers.component';
+import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
+import { ChatListComponent } from './pages/chat-list/chat-list.component';
+import { RandomUserProfileComponent } from './pages/random-user-profile/random-user-profile.component';
 
 const routes: Routes = [
   { path: '', 
@@ -27,6 +28,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]  
   },
   { 
+    path: 'users/:id',
+    component: RandomUserProfileComponent,
+  },
+  { 
     path: 'people',
     component: AllusersComponent,
     canActivate: [AuthGuard]  
@@ -38,7 +43,7 @@ const routes: Routes = [
   },
   { 
     path: 'users/user-profile/:id/messages',
-    component: ChatListComponent,
+    component: ChatRoomComponent,
     canActivate: [AuthGuard]  
   },
 ];

@@ -1,0 +1,54 @@
+
+<div class="wrapper">
+        <div class="card border-success mb-3 user-photo" style="max-width: 20rem;">
+            
+                <!--profile-image-->
+               <div class="profile-image">
+                   <i class="fas fa-user"></i>
+               </div>
+  
+               <!--Btn add to friends-->
+               <button class="btn btn-primary" type="button" 
+                   > Add to friends
+               </button>
+               <!--Btn send messages -->
+               <button class="btn btn-danger" type="button"
+                    (click) = 'joinChat()'
+                    (click) = 'goToDialog()'> Send Message
+               </button>
+            
+          </div>
+        
+    
+        <div *ngIf="this.targetUser; else loading "
+        class="card border-success mb-3 user-shortInfo">
+        
+                <h3>
+                    {{this.targetUser.name}} 
+                    "{{this.targetUser.nickname}}"
+                    {{this.targetUser.surname}}
+                </h3>
+                <ul class="user-info">
+                    <li *ngIf="this.targetUser.age">
+                        <span>age: </span>{{this.targetUser.age}}
+                    </li>
+                    <li *ngIf="this.targetUser.sex">
+                        <span>sex: </span>{{this.targetUser.sex}}
+                    </li>
+                    <li *ngIf="this.targetUser.email">
+                        <span>email: </span>{{this.targetUser.email}}
+                    </li>
+                    <li *ngIf="this.targetUser.city">
+                        <span>city: </span>{{this.targetUser.city}}
+                    </li>
+                    <li *ngIf="this.targetUser.country">
+                        <span>country: </span>{{this.targetUser.country}}
+                    </li>
+                </ul>  
+        </div>              
+    </div>
+    
+    <!-- loader -->
+    <ng-template #loading >
+        <app-loader></app-loader>
+    </ng-template>

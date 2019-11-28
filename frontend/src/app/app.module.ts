@@ -2,22 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { UserService } from './services/user.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { UserUpdateComponent } from './user-update/user-update.component';
-import { AllusersComponent } from './allusers/allusers.component';
+import { UserUpdateComponent } from './pages/user-update/user-update.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { LoaderComponent } from './loader/loader.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { ChatFormComponent } from './chat-room/chat-form/chat-form.component';
-import { ChatFeedComponent } from './chat-room/chat-feed/chat-feed.component';
-import { ChatListComponent } from './chat-list/chat-list.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
+import { ChatFeedComponent } from './components/chat-feed/chat-feed.component';
+import { ChatListComponent } from './pages/chat-list/chat-list.component';
+import { RandomUserProfileComponent } from './pages/random-user-profile/random-user-profile.component';
+import { ChatService } from './services/chat.service';
+import { ChatFormComponent } from './components/chat-form/chat-form.component';
+import { AllusersComponent } from './pages/allusers/allusers.component';
  
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ChatListComponent } from './chat-list/chat-list.component';
     ChatRoomComponent,
     ChatFormComponent,
     ChatFeedComponent,
-    ChatListComponent
+    ChatListComponent,
+    RandomUserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { ChatListComponent } from './chat-list/chat-list.component';
     HttpClientModule
   ],
   providers: [
-    UserService, AuthGuard,
+    UserService, AuthGuard, ChatService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

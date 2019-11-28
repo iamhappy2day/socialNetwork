@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../interfaces/user';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +10,9 @@ import { AuthService } from './auth.service';
 export class UserService {
 
   newUser: User
-  targetUser: User 
+  userId: string
 
-  private _targetUser = new Subject<User>()
+  private _targetUser = new Subject<string>()
   _targetUser$ = this._targetUser.asObservable();
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -24,8 +23,8 @@ export class UserService {
       return this.http.post<User>('http://localhost:3000/register', this.newUser) // return stream
     }
 
-    getUser(user: User) {
-      this._targetUser.next(user)
+    getUserId(userId: string) {
+      this._targetUser.next(userId)
     }
 
     //Update user
@@ -42,4 +41,9 @@ export class UserService {
     getAllUsers():Observable <User[]> {
       return this.http.get<User[]>('http://localhost:3000/users/')
     }
+
+    //  //Get user by Id
+    // getUserById():<User> {
+
+    // }
 }

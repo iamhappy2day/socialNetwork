@@ -25,13 +25,21 @@ app.use(cors);
 app.use('', authRoutes)
 app.use('/users', userRoutes)
 
+const server = app.listen(port, () => {
+    console.log(`Server is running on port ${port} ...`)
+})
 
-const server = app.listen(3000, () => console.log(`Server is running on port ${port} ...`))
-
-//Socket setup
+//Socket setup 
 const socket = require('socket.io')
 const io = socket(server)
 
 io.on('connection',(socket) => {
-    console.log('made socket connection')
+    console.log('made socket connection') 
+    //joining to the dialog
+    socket.on('join', (data) => {
+        socket.join(data)  
+        console.log( data + ' joined the room')
+      });
+  
 })
+

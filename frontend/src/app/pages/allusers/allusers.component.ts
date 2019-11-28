@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../interfaces/user';
-import { SearchPipe } from '../pipes/search.pipe';
-import { LoaderComponent } from '../loader/loader.component';
+import { UserService } from '../../services/user.service';
+import { User } from '../../interfaces/user';
+import { SearchPipe } from '../../pipes/search.pipe';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
-
+LoaderComponent
 @Component({
   selector: 'app-allusers',
   templateUrl: './allusers.component.html',

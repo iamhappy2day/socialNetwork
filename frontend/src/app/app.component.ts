@@ -1,29 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { ChatService } from './services/chat.service';
-
-
-
+import { UserService } from './services/user.service';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ChatService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   
+  userId: string
+  message: string
+
   constructor(
     private authService: AuthService,
     private chatService: ChatService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute, 
+    private userService: UserService,
+    private router: Router,
+    private cdRef:ChangeDetectorRef
     ){}
 
-  ngOnInit() {
-    
+    ngAfterViewChecked() {
+    this.userService._targetUser$.subscribe(userId => {
+      this.userId = userId
+      this.cdRef.detectChanges();
+    })
   }
  
 }
+
