@@ -1,9 +1,11 @@
-import mongoose from 'mongoose';
-
-const Shema = mongoose.Schema;
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
+const Shema = mongoose_1.default.Schema;
 const UserSchema = new Shema({
-
     name: {
         type: String,
         required: true,
@@ -40,8 +42,5 @@ const UserSchema = new Shema({
     sex: {
         type: String
     }
-
 });
-
-export default module.exports = mongoose.model('User', UserSchema);
-
+exports.default = module.exports = mongoose_1.default.model('User', UserSchema);
