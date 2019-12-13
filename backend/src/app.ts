@@ -1,20 +1,19 @@
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import {userRouter} from './routes/user-routes';
+import {authRouter} from './routes/auth-routes';
 const cors = require('cors')();
 const morgan = require('morgan');
 const app: Application = express();
-
-const userRoutes = require('./routes/user-routes');
-const authRoutes = require('./routes/auth-routes');
 
 app.use(express.json());
 
 dotenv.config();
 app.use(morgan('dev'));
 app.use(cors);
-app.use('', authRoutes)
-app.use('/users', userRoutes)
+app.use('', authRouter);
+app.use('/users', userRouter);
 
 declare const process : {
     env: {

@@ -5,8 +5,7 @@ import {Request, Response, NextFunction} from 'express';
 // we don't want them to access it without having this token
 //we are gonna add this function before every private route to check if this token is avalible
 
-const verifyToken = function (req: any, res: Response, next: NextFunction) {
-
+ export const verifyToken = function (req: any, res: Response, next: NextFunction) {
 
     if(!req.headers.authorization)
         return res.status(401).send('Access Denied. Authorize please');
@@ -23,7 +22,5 @@ const verifyToken = function (req: any, res: Response, next: NextFunction) {
     }
     req.userId = verified.subject;
     next();
-
 };
 
-module.exports.verifyToken = verifyToken;

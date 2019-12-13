@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import User from '../models/User';
-const mongoose = require('mongoose');
+import {User} from '../models/User';
+import mongoose from 'mongoose';
 mongoose.set('useFindAndModify', false);
 
-class Controller {
+export class Controller {
 //getAll
     async getAllUsers(req: Request, res: Response) {
         res.status(200).send(await User.find())
@@ -57,5 +57,5 @@ class Controller {
         res.status(200).send(targetUser)
     }
 }
-module.exports = Controller;
+
 

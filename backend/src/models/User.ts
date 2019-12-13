@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-
 const Shema = mongoose.Schema;
-
 const UserSchema = new Shema({
 
     name: {
@@ -43,5 +41,5 @@ const UserSchema = new Shema({
 
 });
 
-export default module.exports = mongoose.model('User', UserSchema);
+export const User = mongoose.model('User', UserSchema);
 

@@ -1,14 +1,14 @@
 import express from 'express';
-const router = express.Router();
-const Controller = require('../controllers/userController');
-const {verifyToken} = require('../verifyToken');
+export const userRouter = express.Router();
+import {Controller} from '../controllers/userController';
+import {verifyToken}  from '../verifyToken';
 
 const controller = new Controller;
 
-router.get('/user-profile/:id', verifyToken, controller.getUser);
-router.get('/users/:id', controller.getUser);
-router.put('/:id',controller.updateUser);
-router.get('/',controller.getAllUsers);
-router.delete('/:id',controller.deleteUser);
+userRouter.get('/user-profile/:id', verifyToken, controller.getUser);
+userRouter.get('/users/:id', controller.getUser);
+userRouter.put('/:id',controller.updateUser);
+userRouter.get('/',controller.getAllUsers);
+userRouter.delete('/:id',controller.deleteUser);
 
-module.exports = router;
+

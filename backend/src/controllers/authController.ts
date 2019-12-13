@@ -1,13 +1,12 @@
-const mongoose = require('mongoose');
+import {User} from '../models/User';
+import {registerValidation, loginValidation} from '../validation';
+import {Request, Response} from 'express';
+import mongoose from 'mongoose';
 mongoose.set('useFindAndModify', false);
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const {registerValidation, loginValidation} = require('../validation');
 const bcrypt = require('bcryptjs');
-import {Request, Response} from 'express'
 
-
-class Controller {
+export class Controller {
 
     async userRegister(req: Request, res: Response) {
         // Validate the data before we make a user
@@ -54,13 +53,13 @@ class Controller {
         }
 
         // Check if the user exists (check email)
-        const userExists = await User.findOne({email: req.body.email});
+        const userExists: any = await User.findOne({email: req.body.email});
 
         if(!userExists) {
             return res.status(400).send('There is no such user... Check the email')
         }
         // Check password if it's correct
-        const validPass = await bcrypt.compare(req.body.password, userExists.password); //returns true or fase
+        const validPass = await bcrypt.compare(req.body.password, userExists.password); //returns true or false
         if(!validPass) {
             return res.status(400).send('Invalid password')
         }
@@ -70,8 +69,6 @@ class Controller {
 
         // auth-token - is a custom responce header
         res.header('auth-token', token).send({token: token, user: userExists, expiresIn: 3600})
-
     }
 }
 
-module.exports = Controller;
