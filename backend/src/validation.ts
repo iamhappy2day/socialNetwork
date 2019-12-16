@@ -32,7 +32,7 @@ export const userUpdValidation: any =  (data: any) => {
         city: Joi.string().min(2) ,
         country: Joi.string().min(2) ,
         age: Joi.number().max(3).min(1)
-    })
+    });
     return schema.validate(data)
 };
 

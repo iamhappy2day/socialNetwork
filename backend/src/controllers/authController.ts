@@ -6,6 +6,7 @@ import {config} from "../config";
 mongoose.set('useFindAndModify', false);
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
+import {errorMessages} from "../errors";
 
 export class Controller {
 
@@ -13,7 +14,9 @@ export class Controller {
         // Validate the data before we make a user
         const { error } = registerValidation(req.body);
         if(error) {
-            res.status(400).send(error.details[0].message)
+            res.status(errorMessages.VALIDATION_ERROR.statusCode).send(
+                errorMessages.VALIDATION_ERROR.message + ": " + error.details[0].message
+            )
         }
 
         //Check if user is already in the database
@@ -21,7 +24,9 @@ export class Controller {
             email: req.body.email
         });
         if(emailExists) {
-            return res.status(400).send('This email already exists')
+            return res.status(errorMessages.EMAIL_EXISTS_ERROR.statusCode).send(
+                errorMessages.EMAIL_EXISTS_ERROR.message
+            )
         }
 
         //Hash passwords
@@ -50,19 +55,25 @@ export class Controller {
         // Validate the data before we login the user
         const { error } = await loginValidation(req.body);
         if(error) {
-            return res.status(400).send(error.details[0].message)
+            res.status(errorMessages.VALIDATION_ERROR.statusCode).send(
+                errorMessages.VALIDATION_ERROR.message + ": " + error.details[0].message
+            )
         }
 
         // Check if the user exists (check email)
         const userExists: any = await User.findOne({email: req.body.email});
 
         if(!userExists) {
-            return res.status(400).send('There is no such user... Check the email')
+            return res.status(errorMessages.WRONG_EMAIL_ERROR.statusCode).send(
+                errorMessages.WRONG_EMAIL_ERROR.message
+            )
         }
         // Check password if it's correct
         const validPass = await bcrypt.compare(req.body.password, userExists.password); //returns true or false
         if(!validPass) {
-            return res.status(400).send('Invalid password')
+            return res.status(errorMessages.INVALID_PASSWORD_ERROR.statusCode).send(
+                errorMessages.INVALID_PASSWORD_ERROR.message
+            )
         }
 
         //Create and assign JWT (JSON web token)
