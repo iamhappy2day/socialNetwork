@@ -2,9 +2,10 @@ import {User} from '../models/User';
 import {registerValidation, loginValidation} from '../validation';
 import {Request, Response} from 'express';
 import mongoose from 'mongoose';
+import {config} from "../config";
 mongoose.set('useFindAndModify', false);
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcryptjs';
 
 export class Controller {
 
@@ -65,7 +66,7 @@ export class Controller {
         }
 
         //Create and assign JWT (JSON web token)
-        const token = jwt.sign({_id: userExists._id}, process.env.TOKEN_SECRET);
+        const token = jwt.sign({_id: userExists._id}, config.TOKEN_SECRET);
 
         // auth-token - is a custom responce header
         res.header('auth-token', token).send({token: token, user: userExists, expiresIn: 3600})

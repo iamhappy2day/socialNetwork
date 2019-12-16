@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {User} from '../models/User';
 import mongoose from 'mongoose';
+import {userUpdValidation} from "../validation";
 mongoose.set('useFindAndModify', false);
 
 export class Controller {
@@ -17,36 +18,20 @@ export class Controller {
 
 //Update
     async updateUser(req: Request, res: Response) {
-        const updQuery: any = {};
 
-        if(req.body.name) {
-            updQuery.name = req.body.name
-        }
-        if(req.body.nickname) {
-            updQuery.nickname = req.body.nickname
-        }
-        if(req.body.surname) {
-            updQuery.surname = req.body.surname
-        }
-        if(req.body.sex) {
-            updQuery.sex = req.body.sex
-        }
-        if(req.body.city) {
-            updQuery.city = req.body.city
-        }
-        if(req.body.country) {
-            updQuery.country = req.body.country
-        }
-        if(req.body.age) {
-            updQuery.age = req.body.age
+        // Middleware for validation the data before we will update user
+        const { error } = userUpdValidation(req.body);
+        if(error) {
+            res.status(400).send(error.details[0].message)
         }
 
         const updUser = await User.findOneAndUpdate(
             {_id: req.params.id},
-            updQuery,
+            req.body,
             {new: true}
         );
-        res.status(201).send( updQuery)
+        res.status(201).send( updUser )
+
     };
 
 //Delete

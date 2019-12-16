@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+import {config} from "./config";
+import * as jwt from 'jsonwebtoken';
 import {Request, Response, NextFunction} from 'express';
 
 //we can add this middleware function to any route we want to make it private(protected)
@@ -16,7 +17,7 @@ import {Request, Response, NextFunction} from 'express';
     }
     // But if we have a token we can verify it
 
-    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+    const verified: any = jwt.verify(token,config.TOKEN_SECRET);
     if(!verified) {
         return res.status(401).send('Unauthorized request')
     }

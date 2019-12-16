@@ -14,11 +14,11 @@ import { ChatService } from '../../services/chat.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  targetUser: User 
-  id: string
-  message: string
-  messages: string[] = []
-  
+  targetUser: User;
+  id: string;
+  message: string;
+  messages: string[] = [];
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -40,21 +40,10 @@ export class UserProfileComponent implements OnInit {
           }
         }
       })
-      
-      // this.chatService.getMessages()
-      //   .subscribe((message:string) => {
-      //     this.messages.push(message)
-      //   })
   }
 
   updateUser() {
     this.router.navigate([`/users/user-profile/${this.id}/update`])
   }
-
-  // sendMessage() {
-  //   console.log(this.message)
-  //   this.chatService.sendMessage(this.message);
-  //   this.message = '';
-  // }
 
 }

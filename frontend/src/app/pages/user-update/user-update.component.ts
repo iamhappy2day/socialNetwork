@@ -12,18 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserUpdateComponent implements OnInit {
 
-  targetUser: User
-  form: FormGroup
-  id: string
+  targetUser: User;
+  form: FormGroup;
+  id: string;
 
   constructor(
     private userService: UserService,
     private activateRoute: ActivatedRoute
-    ) { 
+    ) {
       this.id = activateRoute.snapshot.params['id']; //id param value of page url for getUser query
     }
 
   ngOnInit() {
+
     this.form = new FormGroup({
       name: new FormControl('', [
          Validators.minLength(3)
@@ -48,9 +49,9 @@ export class UserUpdateComponent implements OnInit {
         ])
     })
   }
-  
+
   updateUser() {
-    this.userService.updateUser(this.id, this.form.value).subscribe()
+    this.userService.updateUser(this.id, this.form.value, this.targetUser).subscribe();
   }
 
   deleteUser() {
